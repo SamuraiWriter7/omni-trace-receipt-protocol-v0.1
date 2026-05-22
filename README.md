@@ -15,12 +15,14 @@ The goal is simple:
 ## Status
 
 ```text
-v0.1.0 draft
+v0.1.1 draft
 ```
 
 This is an initial protocol draft.
 
 It is intended as a minimal evidence layer for traceability, origin audit, attribution review, dispute handling, and future value-circulation systems.
+
+The v0.1.1 draft adds an architecture overview document that explains where the receipt layer sits in the broader trace, claim, origin audit, allocation readiness, and Royalty OS architecture.
 
 ---
 
@@ -102,6 +104,8 @@ AI-mediated use
 ↓
 Omni Trace Receipt
 ↓
+Trace Assessment
+↓
 Origin Audit
 ↓
 Attribution Review
@@ -111,6 +115,45 @@ Dispute Handling
 Allocation Readiness
 ↓
 Royalty OS / Value Circulation
+```
+
+---
+
+## Architecture Position
+
+Omni Trace Receipt Protocol sits at the earliest evidence layer.
+
+It should be understood as a minimal receipt layer before stronger trace claims, origin audit, attribution review, allocation readiness, or royalty distribution.
+
+```text
+Receipt Layer
+= the minimal evidence layer before trace claims, origin audit, and royalty readiness.
+```
+
+The intended architecture flow is:
+
+```text
+Receipt
+↓
+Trace
+↓
+Claim
+↓
+Origin Audit
+↓
+Allocation Readiness
+↓
+Royalty OS
+```
+
+The receipt layer does not decide what the evidence means.
+
+It preserves the record before the relationship disappears.
+
+For the full architecture map, see:
+
+```text
+docs/architecture-overview.md
 ```
 
 ---
@@ -191,6 +234,7 @@ The protocol supports the following usage types:
 │   ├── generative-remix.example.json
 │   └── disputed-origin.example.json
 ├── docs/
+│   ├── architecture-overview.md
 │   ├── relationship-to-rsl.md
 │   ├── relationship-to-c2pa-synthid.md
 │   ├── relationship-to-royalty-os.md
@@ -209,43 +253,46 @@ Recommended reading order:
 1. `README.md`  
    Overview of the protocol, its purpose, and its design philosophy.
 
-2. `spec/omni-trace-receipt-v0.1.yaml`  
+2. `docs/architecture-overview.md`  
+   Explains where the receipt layer sits in the broader trace, claim, origin audit, allocation readiness, and Royalty OS architecture.
+
+3. `spec/omni-trace-receipt-v0.1.yaml`  
    Human-readable protocol specification for Omni Trace Receipt Protocol v0.1.
 
-3. `schemas/omni-trace-receipt.schema.json`  
+4. `schemas/omni-trace-receipt.schema.json`  
    JSON Schema for validating Omni Trace Receipt objects.
 
-4. `examples/zero-click-summary.example.json`  
+5. `examples/zero-click-summary.example.json`  
    Core example showing zero-click AI consumption, where source value is consumed without a user visit.
 
-5. `examples/explicit-source-use.example.json`  
+6. `examples/explicit-source-use.example.json`  
    Example of a lower-risk case where a source is explicitly referenced or linked.
 
-6. `examples/generative-remix.example.json`  
+7. `examples/generative-remix.example.json`  
    Example of AI-mediated transformation where source material or structure is remixed into a new media output.
 
-7. `examples/disputed-origin.example.json`  
+8. `examples/disputed-origin.example.json`  
    Example of a contested trace relationship where origin claims require dispute handling.
 
-8. `docs/zero-click-consumption-risk.md`  
+9. `docs/zero-click-consumption-risk.md`  
    Explains the core risk that motivates this protocol.
 
-9. `docs/relationship-to-rsl.md`  
-   Explains how permission and licensing layers may complement trace receipts.
+10. `docs/relationship-to-rsl.md`  
+    Explains how permission and licensing layers may complement trace receipts.
 
-10. `docs/relationship-to-c2pa-synthid.md`  
+11. `docs/relationship-to-c2pa-synthid.md`  
     Explains how media provenance and watermarking differ from source-output trace receipts.
 
-11. `docs/relationship-to-royalty-os.md`  
+12. `docs/relationship-to-royalty-os.md`  
     Explains how trace receipts may later connect to Royalty OS and value-circulation systems.
 
-12. `CHANGELOG.md`  
+13. `CHANGELOG.md`  
     Tracks protocol changes and release history.
 
-13. `CITATION.cff`  
+14. `CITATION.cff`  
     Provides citation metadata for referencing this protocol.
 
-14. `LICENSE`  
+15. `LICENSE`  
     Project license.
 
 ---
