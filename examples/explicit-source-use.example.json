@@ -1,0 +1,71 @@
+{
+  "receipt_id": "otr_explicit_source_use_000001",
+  "protocol_version": "0.1.0",
+  "created_at": "2026-05-21T00:00:00Z",
+  "ai_environment": {
+    "system_name": "omni-style-ai-environment",
+    "provider": "unspecified",
+    "model_name": "unspecified",
+    "mode": "search_answer"
+  },
+  "output_context": {
+    "output_id": "out_explicit_source_use_000001",
+    "output_type": "text_answer",
+    "user_visible": true,
+    "user_clicked_original_source": true,
+    "output_reference": "https://example.com/ai-output/explicit-source-use-000001"
+  },
+  "source_traces": [
+    {
+      "source_id": "src_article_000001",
+      "source_type": "article",
+      "source_reference": "https://example.com/original-article",
+      "trace_type": "explicit_reference",
+      "confidence": 0.97,
+      "evidence_note": "The AI-generated answer directly cited, linked, or named the source."
+    }
+  ],
+  "usage_assessment": {
+    "primary_usage_type": "explicit_reference",
+    "influence_level": "medium",
+    "requires_attribution_review": false,
+    "requires_origin_audit": false
+  },
+  "transformation_profile": {
+    "transformation_type": "summary",
+    "semantic_distance": "moderate",
+    "structure_preserved": false,
+    "content_preserved": true
+  },
+  "audit_status": {
+    "status": "reviewed",
+    "review_required": false,
+    "reviewer_type": "none"
+  },
+  "royalty_readiness": {
+    "allocation_candidate": false,
+    "allocation_ready": false,
+    "reason": "The source was explicitly referenced and no allocation claim is currently asserted.",
+    "recommended_next_step": "no_action"
+  },
+  "dispute_status": {
+    "status": "undisputed"
+  },
+  "provenance_references": [
+    {
+      "reference_type": "origin_audit_record",
+      "reference_value": "https://example.com/origin-audit-records/explicit-source-use-000001",
+      "note": "Optional external record confirming that the source was explicitly referenced."
+    }
+  ],
+  "external_protocol_links": [
+    {
+      "protocol_name": "Omni Trace Receipt Protocol",
+      "protocol_version": "0.1.0",
+      "reference": "spec/omni-trace-receipt-v0.1.yaml",
+      "relationship": "referenced_by"
+    }
+  ],
+  "reviewer_notes": "This example represents a low-risk explicit source use case where the original source was visible and accessible to the user.",
+  "governance_notes": "Explicit reference does not automatically remove all governance concerns, but this case does not require immediate origin audit or allocation-readiness review."
+}
