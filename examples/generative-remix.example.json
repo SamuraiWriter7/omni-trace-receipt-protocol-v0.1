@@ -1,0 +1,96 @@
+{
+  "receipt_id": "otr_generative_remix_000001",
+  "protocol_version": "0.1.0",
+  "created_at": "2026-05-21T00:00:00Z",
+  "ai_environment": {
+    "system_name": "omni-style-ai-environment",
+    "provider": "unspecified",
+    "model_name": "unspecified",
+    "mode": "generative_media"
+  },
+  "output_context": {
+    "output_id": "out_generative_remix_000001",
+    "output_type": "video",
+    "user_visible": true,
+    "user_clicked_original_source": false,
+    "output_reference": "https://example.com/ai-output/generative-remix-000001"
+  },
+  "source_traces": [
+    {
+      "source_id": "src_structure_000001",
+      "source_type": "structure",
+      "source_reference": "https://example.com/original-framework",
+      "trace_type": "structural_derivation",
+      "confidence": 0.76,
+      "evidence_note": "The generated media appears to preserve the conceptual structure, sequence, or framework of the source."
+    },
+    {
+      "source_id": "src_article_000002",
+      "source_type": "article",
+      "source_reference": "https://example.com/supporting-article",
+      "trace_type": "generative_remix",
+      "confidence": 0.64,
+      "evidence_note": "The generated output appears to remix several source-level ideas into a new media format."
+    }
+  ],
+  "usage_assessment": {
+    "primary_usage_type": "generative_remix",
+    "influence_level": "high",
+    "requires_attribution_review": true,
+    "requires_origin_audit": true
+  },
+  "transformation_profile": {
+    "transformation_type": "media_generation",
+    "semantic_distance": "high",
+    "structure_preserved": true,
+    "content_preserved": false
+  },
+  "audit_status": {
+    "status": "escalated",
+    "review_required": true,
+    "reviewer_type": "multi_wing"
+  },
+  "royalty_readiness": {
+    "allocation_candidate": true,
+    "allocation_ready": false,
+    "reason": "The AI-generated media may preserve or remix source-level structure and ideas, but multi-wing review and origin audit are required before any allocation-readiness decision.",
+    "recommended_next_step": "multi_wing_review"
+  },
+  "dispute_status": {
+    "status": "unresolved"
+  },
+  "provenance_references": [
+    {
+      "reference_type": "content_credentials",
+      "reference_value": "https://example.com/provenance/generative-remix-000001",
+      "note": "Optional placeholder for media provenance or content credentials associated with the generated output."
+    },
+    {
+      "reference_type": "origin_audit_record",
+      "reference_value": "https://example.com/origin-audit-records/generative-remix-000001",
+      "note": "Optional placeholder for a future origin-audit record examining structural derivation and remix claims."
+    }
+  ],
+  "external_protocol_links": [
+    {
+      "protocol_name": "Kazene Trace Protocol",
+      "protocol_version": "unspecified",
+      "reference": "https://example.com/kazene-trace-protocol",
+      "relationship": "feeds_into"
+    },
+    {
+      "protocol_name": "Royalty OS",
+      "protocol_version": "unspecified",
+      "reference": "https://example.com/royalty-os",
+      "relationship": "feeds_into"
+    },
+    {
+      "protocol_name": "Omni Trace Receipt Protocol",
+      "protocol_version": "0.1.0",
+      "reference": "spec/omni-trace-receipt-v0.1.yaml",
+      "relationship": "referenced_by"
+    }
+  ],
+  "reviewer_notes": "This example represents a higher-risk generative remix case where source-level concepts or structures may have been transformed into a new media output.",
+  "governance_notes": "Generative remix should not be treated as automatic infringement or automatic royalty entitlement. It should be routed through origin audit, attribution review, and multi-wing review before any allocation-readiness decision."
+}
