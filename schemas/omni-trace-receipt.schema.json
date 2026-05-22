@@ -1,0 +1,533 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/omni-trace-receipt.schema.json",
+  "title": "Omni Trace Receipt",
+  "description": "A machine-readable trace receipt object for zero-click AI consumption, generative transformation, origin audit, and royalty-readiness in Omni-style AI environments.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id",
+    "protocol_version",
+    "created_at",
+    "ai_environment",
+    "output_context",
+    "source_traces",
+    "usage_assessment",
+    "audit_status",
+    "royalty_readiness",
+    "dispute_status"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique identifier for the trace receipt."
+    },
+    "protocol_version": {
+      "type": "string",
+      "const": "0.1.0",
+      "description": "Version of the Omni Trace Receipt Protocol used by this receipt."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the receipt was created."
+    },
+    "ai_environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "system_name",
+        "provider",
+        "mode"
+      ],
+      "properties": {
+        "system_name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the AI environment, interface, model environment, or system."
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Provider, organization, or platform name."
+        },
+        "model_name": {
+          "type": "string",
+          "description": "Optional model name, if known."
+        },
+        "mode": {
+          "$ref": "#/$defs/ai_environment_mode"
+        }
+      }
+    },
+    "output_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "output_id",
+        "output_type",
+        "user_visible",
+        "user_clicked_original_source"
+      ],
+      "properties": {
+        "output_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for the AI-generated or AI-mediated output."
+        },
+        "output_type": {
+          "$ref": "#/$defs/output_type"
+        },
+        "user_visible": {
+          "type": "boolean",
+          "description": "Whether the output was visible to the user."
+        },
+        "user_clicked_original_source": {
+          "type": "boolean",
+          "description": "Whether the user clicked or visited the original source after receiving the AI-mediated output."
+        },
+        "output_reference": {
+          "type": "string",
+          "description": "Optional reference to the output, if externally available."
+        }
+      }
+    },
+    "source_traces": {
+      "type": "array",
+      "minItems": 1,
+      "description": "List of source, structure, concept, question, or work traces associated with the AI-mediated output.",
+      "items": {
+        "$ref": "#/$defs/source_trace"
+      }
+    },
+    "usage_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_usage_type",
+        "influence_level",
+        "requires_attribution_review"
+      ],
+      "properties": {
+        "primary_usage_type": {
+          "$ref": "#/$defs/trace_type"
+        },
+        "influence_level": {
+          "$ref": "#/$defs/influence_level"
+        },
+        "requires_attribution_review": {
+          "type": "boolean",
+          "description": "Whether attribution review is recommended."
+        },
+        "requires_origin_audit": {
+          "type": "boolean",
+          "description": "Whether origin audit is recommended."
+        }
+      }
+    },
+    "transformation_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transformation_type",
+        "semantic_distance",
+        "structure_preserved"
+      ],
+      "properties": {
+        "transformation_type": {
+          "$ref": "#/$defs/transformation_type"
+        },
+        "semantic_distance": {
+          "$ref": "#/$defs/semantic_distance"
+        },
+        "structure_preserved": {
+          "type": "boolean",
+          "description": "Whether the source structure, schema, method, or conceptual frame appears to be preserved."
+        },
+        "content_preserved": {
+          "type": "boolean",
+          "description": "Whether the source content appears to be substantially preserved."
+        }
+      }
+    },
+    "audit_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "review_required",
+        "reviewer_type"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/audit_status"
+        },
+        "review_required": {
+          "type": "boolean",
+          "description": "Whether further review is required."
+        },
+        "reviewer_type": {
+          "$ref": "#/$defs/reviewer_type"
+        }
+      }
+    },
+    "royalty_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allocation_candidate",
+        "allocation_ready",
+        "reason",
+        "recommended_next_step"
+      ],
+      "properties": {
+        "allocation_candidate": {
+          "type": "boolean",
+          "description": "Whether this receipt may be considered for future allocation review."
+        },
+        "allocation_ready": {
+          "type": "boolean",
+          "description": "Whether this receipt is ready for allocation consideration. In v0.1.0, this should normally remain false unless external review has occurred."
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Explanation for the current readiness state."
+        },
+        "recommended_next_step": {
+          "$ref": "#/$defs/recommended_next_step"
+        }
+      }
+    },
+    "dispute_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/dispute_status"
+        },
+        "dispute_reference": {
+          "type": "string",
+          "description": "Optional reference to a dispute registry, issue, review record, or external dispute process."
+        }
+      }
+    },
+    "provenance_references": {
+      "type": "array",
+      "description": "Optional links to provenance metadata, watermark references, content credentials, signed attestations, or related records.",
+      "items": {
+        "$ref": "#/$defs/provenance_reference"
+      }
+    },
+    "external_protocol_links": {
+      "type": "array",
+      "description": "Optional links to related external protocols or internal Kazene/Royalty OS protocol objects.",
+      "items": {
+        "$ref": "#/$defs/external_protocol_link"
+      }
+    },
+    "reviewer_notes": {
+      "type": "string",
+      "description": "Optional notes from a reviewer."
+    },
+    "governance_notes": {
+      "type": "string",
+      "description": "Optional governance notes related to this receipt."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "dispute_status": {
+            "properties": {
+              "status": {
+                "const": "disputed"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "dispute_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "royalty_readiness": {
+            "properties": {
+              "allocation_ready": {
+                "const": false
+              }
+            },
+            "required": [
+              "allocation_ready"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "source_trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_type",
+        "trace_type",
+        "confidence"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for the source trace."
+        },
+        "source_type": {
+          "$ref": "#/$defs/source_type"
+        },
+        "source_reference": {
+          "type": "string",
+          "description": "Optional URL, URI, citation key, repository reference, document ID, or other external reference."
+        },
+        "trace_type": {
+          "$ref": "#/$defs/trace_type"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence score for the trace relationship. This is not a legal certainty score."
+        },
+        "evidence_note": {
+          "type": "string",
+          "description": "Short explanation of why this source trace was recorded."
+        }
+      }
+    },
+    "provenance_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference_type",
+        "reference_value"
+      ],
+      "properties": {
+        "reference_type": {
+          "$ref": "#/$defs/provenance_reference_type"
+        },
+        "reference_value": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Reference value, URL, identifier, hash, or external record."
+        },
+        "note": {
+          "type": "string",
+          "description": "Optional note about the provenance reference."
+        }
+      }
+    },
+    "external_protocol_link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol_name",
+        "relationship"
+      ],
+      "properties": {
+        "protocol_name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the related protocol."
+        },
+        "protocol_version": {
+          "type": "string",
+          "description": "Optional version of the related protocol."
+        },
+        "reference": {
+          "type": "string",
+          "description": "Optional URL, URI, repository link, document ID, or other reference."
+        },
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "complements",
+            "extends",
+            "feeds_into",
+            "depends_on",
+            "referenced_by",
+            "other"
+          ],
+          "description": "Relationship between this receipt and the linked protocol."
+        }
+      }
+    },
+    "ai_environment_mode": {
+      "type": "string",
+      "enum": [
+        "search_answer",
+        "zero_click_answer",
+        "generative_media",
+        "code_generation",
+        "agentic_action",
+        "multimodal_response",
+        "contextual_editing",
+        "recommendation",
+        "other"
+      ]
+    },
+    "output_type": {
+      "type": "string",
+      "enum": [
+        "text_answer",
+        "text_summary",
+        "image",
+        "video",
+        "audio",
+        "code",
+        "recommendation",
+        "action_plan",
+        "agentic_action",
+        "multimodal_output",
+        "other"
+      ]
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "article",
+        "book",
+        "web_page",
+        "dataset",
+        "social_post",
+        "code_repository",
+        "image",
+        "video",
+        "audio",
+        "question",
+        "concept",
+        "structure",
+        "specification",
+        "research_paper",
+        "documentation",
+        "unknown"
+      ]
+    },
+    "trace_type": {
+      "type": "string",
+      "enum": [
+        "explicit_reference",
+        "zero_click_summary",
+        "implicit_influence",
+        "structural_derivation",
+        "generative_remix",
+        "action_guidance",
+        "disputed_trace"
+      ]
+    },
+    "influence_level": {
+      "type": "string",
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "critical",
+        "unknown"
+      ]
+    },
+    "transformation_type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "quote",
+        "summary",
+        "paraphrase",
+        "translation",
+        "schema_reuse",
+        "conceptual_reuse",
+        "structural_reuse",
+        "remix",
+        "media_generation",
+        "code_generation",
+        "recommendation",
+        "other"
+      ]
+    },
+    "semantic_distance": {
+      "type": "string",
+      "enum": [
+        "identical",
+        "near_identical",
+        "low",
+        "moderate",
+        "high",
+        "unknown"
+      ]
+    },
+    "audit_status": {
+      "type": "string",
+      "enum": [
+        "unreviewed",
+        "pending_review",
+        "reviewed",
+        "rejected",
+        "escalated"
+      ]
+    },
+    "reviewer_type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "human",
+        "ai_wing",
+        "multi_wing",
+        "institution",
+        "hybrid"
+      ]
+    },
+    "recommended_next_step": {
+      "type": "string",
+      "enum": [
+        "no_action",
+        "attribution_review",
+        "origin_audit",
+        "multi_wing_review",
+        "dispute_registry",
+        "allocation_readiness_review",
+        "royalty_os_review"
+      ]
+    },
+    "dispute_status": {
+      "type": "string",
+      "enum": [
+        "undisputed",
+        "disputed",
+        "unresolved",
+        "resolved",
+        "rejected"
+      ]
+    },
+    "provenance_reference_type": {
+      "type": "string",
+      "enum": [
+        "c2pa",
+        "content_credentials",
+        "watermark",
+        "synthid_like",
+        "signed_attestation",
+        "structure_fingerprint",
+        "trace_protocol_record",
+        "origin_audit_record",
+        "other"
+      ]
+    }
+  }
+}
