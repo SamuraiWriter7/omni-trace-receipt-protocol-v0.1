@@ -1,0 +1,97 @@
+{
+  "receipt_id": "otr_disputed_origin_000001",
+  "protocol_version": "0.1.0",
+  "created_at": "2026-05-21T00:00:00Z",
+  "ai_environment": {
+    "system_name": "omni-style-ai-environment",
+    "provider": "unspecified",
+    "model_name": "unspecified",
+    "mode": "multimodal_response"
+  },
+  "output_context": {
+    "output_id": "out_disputed_origin_000001",
+    "output_type": "multimodal_output",
+    "user_visible": true,
+    "user_clicked_original_source": false,
+    "output_reference": "https://example.com/ai-output/disputed-origin-000001"
+  },
+  "source_traces": [
+    {
+      "source_id": "src_concept_claim_a_000001",
+      "source_type": "concept",
+      "source_reference": "https://example.com/origin-claim-a",
+      "trace_type": "disputed_trace",
+      "confidence": 0.59,
+      "evidence_note": "Possible conceptual influence detected, but the relation between the source and the AI output is contested."
+    },
+    {
+      "source_id": "src_specification_claim_b_000001",
+      "source_type": "specification",
+      "source_reference": "https://example.com/origin-claim-b",
+      "trace_type": "disputed_trace",
+      "confidence": 0.61,
+      "evidence_note": "An alternative specification or framework may also explain the structure of the AI-mediated output."
+    }
+  ],
+  "usage_assessment": {
+    "primary_usage_type": "disputed_trace",
+    "influence_level": "unknown",
+    "requires_attribution_review": true,
+    "requires_origin_audit": true
+  },
+  "transformation_profile": {
+    "transformation_type": "conceptual_reuse",
+    "semantic_distance": "unknown",
+    "structure_preserved": true,
+    "content_preserved": false
+  },
+  "audit_status": {
+    "status": "escalated",
+    "review_required": true,
+    "reviewer_type": "hybrid"
+  },
+  "royalty_readiness": {
+    "allocation_candidate": false,
+    "allocation_ready": false,
+    "reason": "The origin relationship is disputed and must be resolved before any allocation-readiness review.",
+    "recommended_next_step": "dispute_registry"
+  },
+  "dispute_status": {
+    "status": "disputed",
+    "dispute_reference": "https://example.com/disputes/disputed-origin-000001"
+  },
+  "provenance_references": [
+    {
+      "reference_type": "origin_audit_record",
+      "reference_value": "https://example.com/origin-audit-records/disputed-origin-000001",
+      "note": "Optional placeholder for an origin-audit record examining competing origin claims."
+    },
+    {
+      "reference_type": "structure_fingerprint",
+      "reference_value": "https://example.com/structure-fingerprints/disputed-origin-000001",
+      "note": "Optional placeholder for structural comparison evidence."
+    }
+  ],
+  "external_protocol_links": [
+    {
+      "protocol_name": "Dispute Registry",
+      "protocol_version": "unspecified",
+      "reference": "https://example.com/dispute-registry",
+      "relationship": "feeds_into"
+    },
+    {
+      "protocol_name": "Origin Audit",
+      "protocol_version": "unspecified",
+      "reference": "https://example.com/origin-audit",
+      "relationship": "depends_on"
+    },
+    {
+      "protocol_name": "Omni Trace Receipt Protocol",
+      "protocol_version": "0.1.0",
+      "reference": "spec/omni-trace-receipt-v0.1.yaml",
+      "relationship": "referenced_by"
+    }
+  ],
+  "reviewer_notes": "This example represents a disputed origin case where multiple candidate sources may explain the AI-mediated output. No allocation-readiness decision should be made until the dispute is reviewed.",
+  "governance_notes": "Disputed trace receipts should be routed to a dispute registry or hybrid review process before attribution, allocation, or royalty-readiness decisions are considered."
+}
