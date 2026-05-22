@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "Omni Trace Receipt Protocol v0.1"
+message: "If you use or extend this protocol, please cite it as below."
+type: software
+version: "0.1.0"
+date-released: "2026-05-22"
+
+authors:
+  - name: "Shidenkai Alpha"
+
+repository-code: "https://github.com/SamuraiWriter7/omni-trace-receipt-protocol-v0.1"
+
+abstract: >
+  Omni Trace Receipt Protocol v0.1 is a minimal machine-readable
+  trace receipt protocol for recording AI-mediated use, zero-click
+  consumption, generative transformation, origin-audit readiness,
+  and royalty-readiness in Omni-style AI environments.
+
+keywords:
+  - AI provenance
+  - zero-click AI
+  - trace receipt
+  - origin audit
+  - royalty OS
+  - creator economy
+  - AI governance
+  - content attribution
+  - machine-readable receipts
+  - civilization OS
+  - Kazene
+
+license: MIT
