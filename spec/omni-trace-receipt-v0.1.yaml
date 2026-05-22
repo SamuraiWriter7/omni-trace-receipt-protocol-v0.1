@@ -1,0 +1,734 @@
+protocol:
+  name: Omni Trace Receipt Protocol
+  short_name: OTRP
+  version: 0.1.0
+  status: draft
+  release_type: initial_draft
+  description: >
+    A minimal machine-readable trace receipt protocol for recording
+    AI-mediated use, zero-click consumption, generative transformation,
+    origin-audit readiness, and royalty-readiness in Omni-style AI environments.
+
+  purpose: >
+    To create a structured receipt whenever an AI system consumes, summarizes,
+    transforms, remixes, structurally derives value from, or otherwise uses
+    external sources, questions, concepts, creative works, or information
+    structures.
+
+  created_for:
+    - zero_click_ai_consumption
+    - multimodal_ai_environments
+    - generative_ai_outputs
+    - ai_search_interfaces
+    - agentic_ai_actions
+    - origin_audit
+    - royalty_readiness
+    - value_circulation_infrastructure
+
+---
+
+scope:
+  includes:
+    - recording AI-mediated source use
+    - recording zero-click summaries
+    - recording structural derivation
+    - recording generative remix
+    - recording attribution-review requirements
+    - recording origin-audit requirements
+    - recording royalty-readiness candidates
+    - recording disputed trace relationships
+
+  excludes:
+    - legal ownership determination
+    - copyright infringement judgment
+    - automatic royalty calculation
+    - mandatory disclosure of proprietary model internals
+    - final attribution enforcement
+    - final allocation enforcement
+    - replacement of human or institutional review
+
+---
+
+principles:
+  - id: receipt_before_judgment
+    label: Receipt Before Judgment
+    description: >
+      A trace receipt records that AI-mediated use may have occurred.
+      It does not automatically determine legality, ownership, attribution,
+      or payment.
+
+  - id: trace_not_ownership
+    label: Trace, Not Ownership
+    description: >
+      A trace is an auditable relationship between a source and an AI-mediated
+      output. It is not a legal ownership claim.
+
+  - id: attribution_before_allocation
+    label: Attribution Before Allocation
+    description: >
+      No value allocation should occur before trace assessment, origin audit,
+      attribution review, and, where necessary, dispute handling.
+
+  - id: review_before_enforcement
+    label: Review Before Enforcement
+    description: >
+      High-impact, ambiguous, or disputed receipts should be reviewed by humans,
+      institutions, or multi-wing review systems before allocation decisions.
+
+---
+
+receipt_lifecycle:
+  stages:
+    - id: ai_mediated_use
+      description: >
+        An AI system consumes, summarizes, transforms, remixes, or structurally
+        derives value from a source, question, concept, work, or structure.
+
+    - id: receipt_creation
+      description: >
+        A trace receipt is created to record the possible source-output
+        relationship.
+
+    - id: origin_audit
+      description: >
+        The source-output relationship may be examined for explicit,
+        implicit, structural, generative, or disputed trace relations.
+
+    - id: attribution_review
+      description: >
+        Reviewers determine whether attribution, citation, disclosure,
+        or contextual clarification is needed.
+
+    - id: dispute_handling
+      description: >
+        Ambiguous or contested trace relationships may be escalated to a
+        dispute registry or review process.
+
+    - id: allocation_readiness
+      description: >
+        The receipt may be evaluated to determine whether it is suitable
+        for future value allocation review.
+
+    - id: royalty_or_value_circulation
+      description: >
+        If externally approved, the trace may connect to a Royalty OS or
+        related value-circulation system.
+
+---
+
+receipt_object:
+  name: OmniTraceReceipt
+  type: object
+  required_fields:
+    - receipt_id
+    - protocol_version
+    - created_at
+    - ai_environment
+    - output_context
+    - source_traces
+    - usage_assessment
+    - audit_status
+    - royalty_readiness
+    - dispute_status
+
+  optional_fields:
+    - transformation_profile
+    - provenance_references
+    - external_protocol_links
+    - reviewer_notes
+    - governance_notes
+
+---
+
+fields:
+  receipt_id:
+    type: string
+    required: true
+    description: >
+      Unique identifier for the trace receipt.
+    example: otr_2026_000001
+
+  protocol_version:
+    type: string
+    required: true
+    const: "0.1.0"
+    description: >
+      Version of the Omni Trace Receipt Protocol used by this receipt.
+
+  created_at:
+    type: string
+    format: date-time
+    required: true
+    description: >
+      Timestamp when the receipt was created.
+    example: "2026-05-21T00:00:00Z"
+
+  ai_environment:
+    type: object
+    required: true
+    description: >
+      AI system, platform, model environment, or interface where the
+      AI-mediated use occurred.
+    required_fields:
+      - system_name
+      - provider
+      - mode
+    fields:
+      system_name:
+        type: string
+        description: Name of the AI environment or system.
+        example: omni-style-ai-environment
+
+      provider:
+        type: string
+        description: Provider, organization, or platform name.
+        example: unspecified
+
+      model_name:
+        type: string
+        required: false
+        description: Model name, if known.
+
+      mode:
+        type: string
+        enum_ref: ai_environment_modes
+        description: Operational mode in which the AI-mediated use occurred.
+
+  output_context:
+    type: object
+    required: true
+    description: >
+      Metadata describing the AI-generated or AI-mediated output.
+    required_fields:
+      - output_id
+      - output_type
+      - user_visible
+      - user_clicked_original_source
+    fields:
+      output_id:
+        type: string
+        description: Unique identifier for the AI output.
+        example: out_000001
+
+      output_type:
+        type: string
+        enum_ref: output_types
+        description: Type of AI-mediated output.
+
+      user_visible:
+        type: boolean
+        description: Whether the output was visible to the user.
+
+      user_clicked_original_source:
+        type: boolean
+        description: >
+          Whether the user clicked or visited the original source after
+          receiving the AI-mediated output.
+
+      output_reference:
+        type: string
+        required: false
+        description: >
+          Optional reference to the output, if externally available.
+
+  source_traces:
+    type: array
+    required: true
+    min_items: 1
+    description: >
+      List of source, structure, concept, question, or work traces associated
+      with the AI-mediated output.
+    item:
+      type: object
+      required_fields:
+        - source_id
+        - source_type
+        - trace_type
+        - confidence
+      fields:
+        source_id:
+          type: string
+          description: Unique identifier for the source trace.
+          example: src_000001
+
+        source_type:
+          type: string
+          enum_ref: source_types
+          description: Type of source or origin object.
+
+        source_reference:
+          type: string
+          required: false
+          description: >
+            Optional URL, URI, citation key, repository reference, document ID,
+            or other external reference.
+
+        trace_type:
+          type: string
+          enum_ref: trace_types
+          description: Type of trace relationship between source and output.
+
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: >
+            Confidence score for the trace relationship.
+            This is not a legal certainty score.
+
+        evidence_note:
+          type: string
+          required: false
+          description: >
+            Short explanation of why this source trace was recorded.
+
+  usage_assessment:
+    type: object
+    required: true
+    description: >
+      Assessment of how the source, structure, concept, or work contributed
+      to the AI-mediated output.
+    required_fields:
+      - primary_usage_type
+      - influence_level
+      - requires_attribution_review
+    fields:
+      primary_usage_type:
+        type: string
+        enum_ref: trace_types
+        description: Main usage type represented by the receipt.
+
+      influence_level:
+        type: string
+        enum_ref: influence_levels
+        description: Estimated level of source influence on the output.
+
+      requires_attribution_review:
+        type: boolean
+        description: Whether attribution review is recommended.
+
+      requires_origin_audit:
+        type: boolean
+        required: false
+        description: Whether origin audit is recommended.
+
+  transformation_profile:
+    type: object
+    required: false
+    description: >
+      Description of how the source was transformed, compressed, remixed,
+      translated, summarized, or structurally reused.
+    required_fields:
+      - transformation_type
+      - semantic_distance
+      - structure_preserved
+    fields:
+      transformation_type:
+        type: string
+        enum_ref: transformation_types
+        description: Type of transformation applied.
+
+      semantic_distance:
+        type: string
+        enum_ref: semantic_distances
+        description: >
+          Approximate semantic distance between the source and the AI output.
+
+      structure_preserved:
+        type: boolean
+        description: >
+          Whether the source structure, schema, method, or conceptual frame
+          appears to be preserved.
+
+      content_preserved:
+        type: boolean
+        required: false
+        description: >
+          Whether the source content appears to be substantially preserved.
+
+  audit_status:
+    type: object
+    required: true
+    description: Current audit state of the receipt.
+    required_fields:
+      - status
+      - review_required
+      - reviewer_type
+    fields:
+      status:
+        type: string
+        enum_ref: audit_statuses
+        description: Current audit status.
+
+      review_required:
+        type: boolean
+        description: Whether further review is required.
+
+      reviewer_type:
+        type: string
+        enum_ref: reviewer_types
+        description: Recommended or actual reviewer type.
+
+  royalty_readiness:
+    type: object
+    required: true
+    description: >
+      Indicates whether this receipt may support future value allocation
+      review. This does not perform allocation.
+    required_fields:
+      - allocation_candidate
+      - allocation_ready
+      - reason
+      - recommended_next_step
+    fields:
+      allocation_candidate:
+        type: boolean
+        description: >
+          Whether this receipt may be considered for future allocation review.
+
+      allocation_ready:
+        type: boolean
+        description: >
+          Whether this receipt is ready for allocation consideration.
+          In v0.1.0, this should normally remain false unless external
+          review has occurred.
+
+      reason:
+        type: string
+        description: Explanation for the current readiness state.
+
+      recommended_next_step:
+        type: string
+        enum_ref: recommended_next_steps
+        description: Recommended next governance or review step.
+
+  dispute_status:
+    type: object
+    required: true
+    description: Dispute state of the receipt.
+    required_fields:
+      - status
+    fields:
+      status:
+        type: string
+        enum_ref: dispute_statuses
+        description: Current dispute status.
+
+      dispute_reference:
+        type: string
+        required: false
+        description: >
+          Optional reference to a dispute registry, issue, review record,
+          or external dispute process.
+
+  provenance_references:
+    type: array
+    required: false
+    description: >
+      Optional links to provenance metadata, watermark references,
+      content credentials, signed attestations, or related records.
+    item:
+      type: object
+      fields:
+        reference_type:
+          type: string
+          enum_ref: provenance_reference_types
+        reference_value:
+          type: string
+        note:
+          type: string
+          required: false
+
+  external_protocol_links:
+    type: array
+    required: false
+    description: >
+      Optional links to related external protocols or internal Kazene/Royalty OS
+      protocol objects.
+    item:
+      type: object
+      fields:
+        protocol_name:
+          type: string
+        protocol_version:
+          type: string
+          required: false
+        reference:
+          type: string
+          required: false
+        relationship:
+          type: string
+          enum:
+            - complements
+            - extends
+            - feeds_into
+            - depends_on
+            - referenced_by
+            - other
+
+---
+
+enums:
+  ai_environment_modes:
+    - search_answer
+    - zero_click_answer
+    - generative_media
+    - code_generation
+    - agentic_action
+    - multimodal_response
+    - contextual_editing
+    - recommendation
+    - other
+
+  output_types:
+    - text_answer
+    - text_summary
+    - image
+    - video
+    - audio
+    - code
+    - recommendation
+    - action_plan
+    - agentic_action
+    - multimodal_output
+    - other
+
+  source_types:
+    - article
+    - book
+    - web_page
+    - dataset
+    - social_post
+    - code_repository
+    - image
+    - video
+    - audio
+    - question
+    - concept
+    - structure
+    - specification
+    - research_paper
+    - documentation
+    - unknown
+
+  trace_types:
+    - explicit_reference
+    - zero_click_summary
+    - implicit_influence
+    - structural_derivation
+    - generative_remix
+    - action_guidance
+    - disputed_trace
+
+  influence_levels:
+    - none
+    - low
+    - medium
+    - high
+    - critical
+    - unknown
+
+  transformation_types:
+    - none
+    - quote
+    - summary
+    - paraphrase
+    - translation
+    - schema_reuse
+    - conceptual_reuse
+    - structural_reuse
+    - remix
+    - media_generation
+    - code_generation
+    - recommendation
+    - other
+
+  semantic_distances:
+    - identical
+    - near_identical
+    - low
+    - moderate
+    - high
+    - unknown
+
+  audit_statuses:
+    - unreviewed
+    - pending_review
+    - reviewed
+    - rejected
+    - escalated
+
+  reviewer_types:
+    - none
+    - human
+    - ai_wing
+    - multi_wing
+    - institution
+    - hybrid
+
+  recommended_next_steps:
+    - no_action
+    - attribution_review
+    - origin_audit
+    - multi_wing_review
+    - dispute_registry
+    - allocation_readiness_review
+    - royalty_os_review
+
+  dispute_statuses:
+    - undisputed
+    - disputed
+    - unresolved
+    - resolved
+    - rejected
+
+  provenance_reference_types:
+    - c2pa
+    - content_credentials
+    - watermark
+    - synthid_like
+    - signed_attestation
+    - structure_fingerprint
+    - trace_protocol_record
+    - origin_audit_record
+    - other
+
+---
+
+validation_profile:
+  schema_file: schemas/omni-trace-receipt.schema.json
+  expected_protocol_version: "0.1.0"
+
+  minimum_valid_receipt:
+    required:
+      - receipt_id
+      - protocol_version
+      - created_at
+      - ai_environment
+      - output_context
+      - source_traces
+      - usage_assessment
+      - audit_status
+      - royalty_readiness
+      - dispute_status
+
+  recommended_constraints:
+    - protocol_version must equal "0.1.0"
+    - source_traces must contain at least one item
+    - confidence values must be between 0 and 1
+    - allocation_ready should not be true without prior review
+    - disputed traces should recommend dispute_registry or origin_audit as next step
+    - zero_click_summary should record whether the user clicked the original source
+
+---
+
+interoperability:
+  related_systems:
+    - name: Royalty OS
+      relationship: >
+        Omni Trace Receipt Protocol may provide trace evidence for later
+        value-circulation and royalty-readiness workflows.
+
+    - name: Origin Audit
+      relationship: >
+        Trace receipts may be used as input records for origin-audit review.
+
+    - name: Kazene Trace Protocol
+      relationship: >
+        Omni Trace Receipt Protocol may operate as an application-layer
+        receipt format above a more general trace protocol.
+
+    - name: RSL-like permission layers
+      relationship: >
+        Permission declarations may define allowed AI uses, while trace
+        receipts record actual or claimed AI-mediated use.
+
+    - name: C2PA-like provenance systems
+      relationship: >
+        Provenance systems may describe output authenticity or media origin,
+        while Omni Trace Receipts describe source-output trace relations.
+
+    - name: Dispute Registry
+      relationship: >
+        Disputed or unresolved receipts may be escalated to a dispute registry.
+
+---
+
+example_minimal_receipt:
+  receipt_id: otr_2026_000001
+  protocol_version: "0.1.0"
+  created_at: "2026-05-21T00:00:00Z"
+
+  ai_environment:
+    system_name: omni-style-ai-environment
+    provider: unspecified
+    mode: zero_click_answer
+
+  output_context:
+    output_id: out_000001
+    output_type: text_summary
+    user_visible: true
+    user_clicked_original_source: false
+
+  source_traces:
+    - source_id: src_000001
+      source_type: article
+      source_reference: https://example.com/original-article
+      trace_type: zero_click_summary
+      confidence: 0.82
+      evidence_note: >
+        The AI output appears to summarize the source without requiring
+        a user click.
+
+  usage_assessment:
+    primary_usage_type: zero_click_summary
+    influence_level: medium
+    requires_attribution_review: true
+    requires_origin_audit: true
+
+  transformation_profile:
+    transformation_type: summary
+    semantic_distance: moderate
+    structure_preserved: true
+    content_preserved: true
+
+  audit_status:
+    status: pending_review
+    review_required: true
+    reviewer_type: human
+
+  royalty_readiness:
+    allocation_candidate: true
+    allocation_ready: false
+    reason: Requires origin audit and review before allocation.
+    recommended_next_step: origin_audit
+
+  dispute_status:
+    status: undisputed
+
+---
+
+governance_notes:
+  - >
+    This protocol intentionally separates trace recording from legal judgment,
+    attribution enforcement, and royalty allocation.
+  - >
+    A receipt may support review, but should not be treated as proof of
+    ownership or infringement.
+  - >
+    Future versions may define signed receipts, compliance tests, pass/fail
+    vectors, multi-wing review profiles, and dispute-registry integration.
+
+---
+
+future_extensions:
+  - signed_trace_receipts
+  - pass_fail_validation_vectors
+  - rsl_bridge_profile
+  - c2pa_attachment_profile
+  - synthid_like_reference_profile
+  - multi_wing_review_profile
+  - dispute_registry_profile
+  - allocation_readiness_profile
+  - royalty_os_bridge_profile
+  - compliance_testing_workflow
