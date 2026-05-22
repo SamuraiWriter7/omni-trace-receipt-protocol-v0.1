@@ -1,0 +1,77 @@
+{
+  "receipt_id": "otr_zero_click_summary_000001",
+  "protocol_version": "0.1.0",
+  "created_at": "2026-05-21T00:00:00Z",
+  "ai_environment": {
+    "system_name": "omni-style-ai-environment",
+    "provider": "unspecified",
+    "model_name": "unspecified",
+    "mode": "zero_click_answer"
+  },
+  "output_context": {
+    "output_id": "out_zero_click_summary_000001",
+    "output_type": "text_summary",
+    "user_visible": true,
+    "user_clicked_original_source": false,
+    "output_reference": "https://example.com/ai-output/zero-click-summary-000001"
+  },
+  "source_traces": [
+    {
+      "source_id": "src_web_page_000001",
+      "source_type": "web_page",
+      "source_reference": "https://example.com/original-source-page",
+      "trace_type": "zero_click_summary",
+      "confidence": 0.88,
+      "evidence_note": "The AI-generated output appears to summarize the source while allowing the user to receive the source value without visiting the original page."
+    }
+  ],
+  "usage_assessment": {
+    "primary_usage_type": "zero_click_summary",
+    "influence_level": "high",
+    "requires_attribution_review": true,
+    "requires_origin_audit": true
+  },
+  "transformation_profile": {
+    "transformation_type": "summary",
+    "semantic_distance": "moderate",
+    "structure_preserved": true,
+    "content_preserved": true
+  },
+  "audit_status": {
+    "status": "pending_review",
+    "review_required": true,
+    "reviewer_type": "human"
+  },
+  "royalty_readiness": {
+    "allocation_candidate": true,
+    "allocation_ready": false,
+    "reason": "The source may have contributed significant value to a zero-click AI summary, but origin audit and attribution review are required before any allocation-readiness decision.",
+    "recommended_next_step": "origin_audit"
+  },
+  "dispute_status": {
+    "status": "undisputed"
+  },
+  "provenance_references": [
+    {
+      "reference_type": "origin_audit_record",
+      "reference_value": "https://example.com/origin-audit-records/zero-click-summary-000001",
+      "note": "Optional placeholder for a future origin-audit record related to this zero-click summary."
+    }
+  ],
+  "external_protocol_links": [
+    {
+      "protocol_name": "Royalty OS",
+      "protocol_version": "unspecified",
+      "reference": "https://example.com/royalty-os",
+      "relationship": "feeds_into"
+    },
+    {
+      "protocol_name": "Omni Trace Receipt Protocol",
+      "protocol_version": "0.1.0",
+      "reference": "spec/omni-trace-receipt-v0.1.yaml",
+      "relationship": "referenced_by"
+    }
+  ],
+  "reviewer_notes": "This example represents a zero-click AI consumption case where the user received a useful summary without visiting the original source.",
+  "governance_notes": "Zero-click summary does not automatically imply infringement or payment obligation, but it should be recorded for attribution review, origin audit, and possible future value-circulation assessment."
+}
